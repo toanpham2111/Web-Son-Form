@@ -1,0 +1,22 @@
+.project-categories {
+  position: relative;
+  #category-menu {
+    scrollbar-color: $red transparent;
+    scrollbar-width: thin;
+    li {
+      padding: 3px 10px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      &:hover,
+      &.active {
+        color: $red;
+        border: 1px solid $red;
+        border-radius: 8px;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+.menu-placeholder {
+  height: 0;
+}

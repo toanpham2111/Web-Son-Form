@@ -1,0 +1,156 @@
+@mixin add-container($nameContainer) {
+  #{$nameContainer} {
+    @include make-container();
+  }
+
+  // Responsive containers that are 100% wide until a breakpoint
+  @each $breakpoint, $container-max-width in $container-max-widths {
+    @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+      %r-responsive-container-#{$breakpoint} {
+        max-width: $container-max-width;
+      }
+
+      // Extend each breakpoint which is smaller or equal to the current breakpoint
+      $extend-breakpoint: true;
+
+      @each $name, $width in $grid-breakpoints {
+        @if ($extend-breakpoint) {
+          #{$nameContainer}#{breakpoint-infix($name, $grid-breakpoints)} {
+            @extend %r-responsive-container-#{$breakpoint};
+          }
+
+          // Once the current breakpoint is reached, stop extending
+          @if ($breakpoint == $name) {
+            $extend-breakpoint: false;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin loader {
+  .loading-first {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $white;
+    z-index: 99999;
+    .loader {
+      position: absolute;
+      top: 50%;
+      left: calc(50% - 15px);
+      transform: translate(-50%, -50%);
+      animation: loader4Animation 1s linear infinite;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: $black;
+      &:before,
+      &:after {
+        display: none !important;
+      }
+    }
+    &.hided {
+      display: none;
+    }
+  }
+  @keyframes loader4Animation {
+    0% {
+      background-color: rgba(0, 0, 0, 1);
+      box-shadow: 15px 0px 0px 0px rgba(0, 0, 0, 0.67),
+        30px 0px 0px 0px rgba(0, 0, 0, 0.33);
+    }
+    17% {
+      background-color: rgba(0, 0, 0, 0.67);
+      box-shadow: 15px 0px 0px 0px rgba(0, 0, 0, 1),
+        30px 0px 0px 0px rgba(0, 0, 0, 0.67);
+    }
+    33% {
+      background-color: rgba(0, 0, 0, 0.33);
+      box-shadow: 15px 0px 0px 0px rgba(0, 0, 0, 0.67),
+        30px 0px 0px 0px rgba(0, 0, 0, 1);
+    }
+    50% {
+      background-color: rgba(0, 0, 0, 0);
+      box-shadow: 15px 0px 0px 0px rgba(0, 0, 0, 0.33),
+        30px 0px 0px 0px rgba(24, 28, 34, 0.67);
+    }
+    67% {
+      background-color: rgba(0, 0, 0, 0.33);
+      box-shadow: 15px 0px 0px 0px rgba(0, 0, 0, 0),
+        30px 0px 0px 0px rgba(0, 0, 0, 0.33);
+    }
+    83% {
+      background-color: rgba(0, 0, 0, 0.67);
+      box-shadow: 15px 0px 0px 0px rgba(0, 0, 0, 0.33),
+        30px 0px 0px 0px rgba(0, 0, 0, 0);
+    }
+    100% {
+      background-color: rgba(0, 0, 0, 1);
+      box-shadow: 15px 0px 0px 0px rgba(0, 0, 0, 0.67),
+        30px 0px 0px 0px rgba(0, 0, 0, 0.33);
+    }
+  }
+}
+
+@mixin menu-button() {
+  .bar-wrapper {
+    display: block;
+    position: relative;
+    background: transparent;
+    z-index: 9999;
+    width: 25px;
+    background-image: none;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+    span {
+      display: block;
+      position: absolute;
+      height: 2px;
+      width: 25px;
+      background: $white;
+      opacity: 1;
+      right: 0;
+      // transform: rotate(0deg);
+      transition: transform 0.2s linear, top 0.2s linear, width 0.2s ease-in-out,
+        opacity 0.5s ease-in-out;
+      &:first-child {
+        top: 0;
+        width: 25px;
+      }
+      &:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      &:nth-child(3) {
+        bottom: 0;
+        width: 25px;
+      }
+    }
+  }
+  body.menu-open {
+    header {
+      .bar-wrapper {
+        span {
+          width: 25px;
+          &:first-child {
+            transform: rotate(45deg);
+            top: 50%;
+          }
+          &:nth-child(2) {
+            width: 0;
+            opacity: 0;
+          }
+          &:last-child {
+            transform: rotate(-45deg);
+            bottom: unset;
+            top: 50%;
+          }
+        }
+      }
+    }
+  }
+}

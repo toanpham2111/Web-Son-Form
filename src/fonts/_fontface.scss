@@ -1,0 +1,40 @@
+/**
+ * @package     Wordpress.Site
+ * @subpackage  Templates.NoName
+ *
+ * @copyright   Copyright (C) 2020 NoName. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+**/
+
+@font-face {
+  font-family: "UTM-AVO";
+  src: url("root/fonts/UTM-AVO.woff2") format("woff2"),
+    url("root/fonts//UTM-AVO.woff") format("woff"),
+    url("root/fonts//UTM-AVO.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "UTM-AVO-Bold";
+
+  src: url("root/fonts/UTM-AVOBOLD.woff2") format("woff2"),
+    url("root/fonts/UTM-AVOBOLD.woff") format("woff"),
+    url("root/fonts/UTM-AVOBOLD.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "UTM-AVO-Bold-Italic";
+
+  src: url("root/fonts/UTM-AVOBOLD_ITALIC.woff2") format("woff2"),
+    url("root/fonts/UTM-AVOBOLD_ITALIC.woff") format("woff"),
+    url("root/fonts/UTM-AVOBOLD_ITALIC.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "UTM-AVO-Italic";
+  src: url("root/fonts/UTM-AVOITALIC.woff2") format("woff2"),
+    url("root/fonts/UTM-AVOITALIC.woff") format("woff"),
+    url("root/fonts/UTM-AVOITALIC.ttf") format("truetype");
+  font-display: swap;
+}
